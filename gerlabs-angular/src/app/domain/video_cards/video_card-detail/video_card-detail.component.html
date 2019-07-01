@@ -1,0 +1,34 @@
+<h1 class="page-header">Detalhes da placa de vídeo: {{ video_card.name }}</h1>
+
+<form [formGroup]="form" (ngSubmit)="updateVideoCard()">
+  <div class="row">
+    <!-- videoCardName -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+      <label for="name" class="control-label">Nome</label>
+      <input type="text" formControlName="name" id="name" class="form-control">
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+
+      <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+        <div *ngIf="form.get('name').errors.required">Obrigatório</div>
+        <div *ngIf="form.get('name').errors.minlength">Este campo deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('name').errors.maxlength">Este campo deve ter no máximo 255 caracteres</div>
+      </div>
+    </div>
+    <!-- videoCardName -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('memory_gpu')">
+        <label for="memory_gpu" class="control-label">Memória</label>
+        <input type="text" formControlName="memory_gpu" id="memory_gpu" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('memory_gpu')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('memory_gpu')" class="text-danger">
+          <div *ngIf="form.get('memory_gpu').errors.required">Obrigatório</div>
+          <div *ngIf="form.get('memory_gpu').errors.minlength">Este campo deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('memory_gpu').errors.maxlength">Este campo deve ter no máximo 255 caracteres</div>
+        </div>
+      </div>
+  </div>
+
+  <button [disabled]="form.invalid" type="submit" class="btn btn-success" style="margin-right: 7px">Atualizar</button>
+  <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+
+</form>

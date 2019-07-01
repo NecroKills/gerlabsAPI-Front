@@ -1,0 +1,54 @@
+<h1 class="page-header">Lista de hardwares</h1>
+
+<div class="well">
+  <form (ngSubmit)="createHardware()">
+    <!-- <div class="row">
+      <div class="col-md-3">
+        <select class="form-control" [(ngModel)]="newHardware.memory_id" name="memory_id" >
+          <option *ngFor="let memory of memories"[value]="memory.id">{{ memory.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control" [(ngModel)]="newHardware.videoCard_id" name="videoCard_id" >
+          <option *ngFor="let videoCard of videoCards"[value]="videoCard.id">{{ videoCard.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control" [(ngModel)]="newHardware.processor_id" name="processor_id" >
+          <option *ngFor="let processor of processors"[value]="processor.id">{{ processor.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-success" type="submit">
+          Adicionar hardware
+        </button>
+      </div>
+    </div> -->
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Processador</th>
+      <th>Placa de vídeo</th>
+      <th>Memória</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hardware of hardwares">
+      <!-- <td>{{ hardware.id }}</td>
+      <td>{{ hardware.processor_id }}</td>
+      <td>{{ hardware.videoCard_id }}</td>
+      <td>{{ hardware.memory_id }}</td> -->
+      <td>
+        <button class="btn btn-danger" (click)="deleteHardware(hardware)">
+          <span class="glyphicon glyphicon-trash"></span>
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,19 @@
+before_script:
+    #INSTALANDO DEPENDENCIAS HEROKU
+    - echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
+    - wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
+    - apt-get update
+    - apt-get install -y heroku-toolbelt
+    - gem install dpl
+    
+stages:
+    - build
+    
+Build:
+    stage: build
+    variables:
+     HEROKU_API_KEY: $HEROKU_GERLABFRONT_KEY
+    script:
+        - dpl --provider=heroku --app=gerlab-angular --api-key=$HEROKU_GERLABFRONT_KEY
+    only:
+     - master

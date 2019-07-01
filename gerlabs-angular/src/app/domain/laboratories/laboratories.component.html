@@ -1,0 +1,39 @@
+<h1 class="page-header">Lista de Laboratórios</h1>
+
+<form (ngSubmit)="createLaboratory()">
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-success" type="button" [routerLink]="['/laboratories/new']">
+        Adicionar Laboratório
+      </button>
+    </div>
+  </div>
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Capacidade</th>
+      <th>Tipo</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let laboratory of laboratories">
+      <td>{{ laboratory.name }}</td>
+      <td>{{ laboratory.capacity }}</td>
+      <td>{{ laboratory.type }}</td>
+      <td>
+        <a [routerLink]="['/laboratories', laboratory.id]" class="btn btn-info" style="margin-right: 7px">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          Detalhes
+        </a>
+        <button class="btn btn-danger" (click)="deleteLaboratory(laboratory)">
+          <span class="glyphicon glyphicon-trash"></span>
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

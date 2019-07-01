@@ -1,0 +1,42 @@
+<h1 class="page-header">Lista de memórias</h1>
+
+<div class="well">
+  <form (ngSubmit)="createMemory()">
+    <div class="row">
+      <div class="col-md-10">
+        <input type="text" class="form-control" [(ngModel)]="newMemory.name" name="name" placeholder="Nome da memória">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success" type="submit">
+          Adicionar memória
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let memory of memories">
+      <td>{{ memory.id }}</td>
+      <td>{{ memory.name }}</td>
+      <td>
+        <a [routerLink]="['/memories', memory.id]" class="btn btn-info" style="margin-right: 7px">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          Detalhes
+        </a>
+        <button class="btn btn-danger" (click)="deleteMemory(memory)">
+          <span class="glyphicon glyphicon-trash"></span>
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

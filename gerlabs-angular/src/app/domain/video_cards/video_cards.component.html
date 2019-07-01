@@ -1,0 +1,47 @@
+<h1 class="page-header">Lista de placas de vídeo</h1>
+
+<div class="well">
+  <form (ngSubmit)="createVideoCard()">
+    <div class="row">
+      <div class="col-md-5">
+        <input type="text" class="form-control" [(ngModel)]="newVideoCard.name" name="name" placeholder="Nome da placa">
+      </div>
+      <div class="col-md-5">
+        <input type="text" class="form-control" [(ngModel)]="newVideoCard.memory_gpu" name="memory_gpu" placeholder="GPU">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success" type="submit">
+          Adicionar placa
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>GPU</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let video_card of video_cards">
+      <td>{{ video_card.id }}</td>
+      <td>{{ video_card.name }}</td>
+      <td>{{ video_card.memory_gpu }}</td>
+      <td>
+          <a [routerLink]="['/video_cards', video_card.id]" class="btn btn-info" style="margin-right: 7px">
+            <span class="glyphicon glyphicon-info-sign"></span>
+            Detalhes
+          </a>
+        <button class="btn btn-danger" (click)="deleteVideoCard(video_card)">
+          <span class="glyphicon glyphicon-trash"></span>
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

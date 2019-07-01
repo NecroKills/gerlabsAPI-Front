@@ -1,0 +1,55 @@
+<h1 class="page-header">Lista de disciplinas 2</h1>
+
+<div class="well">
+  <form (ngSubmit)="createDiscipline()">
+    <div class="row">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="newDiscipline.name" name="name"
+          placeholder="Nome da disciplina">
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" [(ngModel)]="newDiscipline.code" name="code" placeholder="Código">
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" [(ngModel)]="newDiscipline.course_id" name="course_id">
+          <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success" type="submit">
+          Adicionar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Curso</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let discipline of disciplines">
+      <td>{{ discipline.id }}</td>
+      <td>{{ discipline.name }}</td>
+      <td>{{ discipline.code }}</td>
+      <td>{{ discipline.course_id }}</td>
+      <td>
+        <a [routerLink]="['/disciplines', discipline.id]" class="btn btn-info" style="margin-right: 7px">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          Detalhes
+        </a>
+        <button class="btn btn-danger" (click)="deleteDiscipline(discipline)">
+          <span class="glyphicon glyphicon-trash"></span>
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

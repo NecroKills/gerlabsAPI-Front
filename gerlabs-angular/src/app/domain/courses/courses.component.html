@@ -1,0 +1,47 @@
+<h1 class="page-header">Lista de cursos</h1>
+
+<div class="well">
+  <form (ngSubmit)="createCourse()">
+    <div class="row">
+      <div class="col-md-5">
+        <input type="text" class="form-control" [(ngModel)]="newCourse.name" name="name" placeholder="Nome do curso">
+      </div>
+      <div class="col-md-5">
+        <input type="text" class="form-control" [(ngModel)]="newCourse.code" name="code" placeholder="Código">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success" type="submit">
+          Adicionar curso
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courses">
+      <td>{{ course.id }}</td>
+      <td>{{ course.name }}</td>
+      <td>{{ course.code }}</td>
+      <td>
+        <a [routerLink]="['/courses', course.id]" class="btn btn-info" style="margin-right: 7px">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          Detalhes
+        </a>
+        <button class="btn btn-danger" (click)="deleteCourse(course)">
+          <span class="glyphicon glyphicon-trash"></span>
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,58 @@
+image: ruby:2.5.1
+
+services:
+    - mysql:5.6
+    - rails
+    
+
+variables:
+    # Configure mysql environment variables (https://hub.docker.com/_/mysql/)
+    MYSQL_ROOT_PASSWORD: root 
+
+before_script:
+    #Inicializando Back-end
+    - bundle install
+    - rake db:create
+    - rake db:migrate
+    - rails server -d
+    #INSTALANDO DEPENDENCIAS HEROKU
+    - echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
+    - wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
+    - apt-get update
+    - apt-get install -y heroku-toolbelt
+    - gem install dpl
+    
+stages:
+    - testes
+    - build
+    
+unidade:
+    stage : testes
+    script: 
+        - bundle exec spring rspec spec/models
+        
+integracao:
+    stage: testes
+    script: 
+        - bundle exec spring rspec spec/requests/api/v2
+    
+#desempenho:
+#    stage: testes
+#    script: 
+#        - rake test:prepare
+#        - rake test:benchmark
+
+
+cobertura:
+  stage: testes
+  script:
+      - rake spec
+
+Build:
+    stage: build
+    variables:
+     HEROKU_API_KEY: $HEROKU_GERLABAPI_KEY
+    script:
+        - dpl --provider=heroku --app=gerlab-api --api-key=$HEROKU_GERLABAPI_KEY
+    only:
+     - master

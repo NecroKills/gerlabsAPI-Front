@@ -1,0 +1,100 @@
+<h1 class="page-header">Novo Laboratório</h1>
+
+<form [formGroup]="form" (ngSubmit)="updateLaboratory()">
+  <div class="row col-md-12">
+    <!-- NAME -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+      <label for="name" class="control-label">Nome do Laboratório</label>
+      <input type="text" formControlName="name" id="name" class="form-control">
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+
+      <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+        <div *ngIf="form.get('name').errors.required">Obrigatório</div>
+        <div *ngIf="form.get('name').errors.minlength">Este campo deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('name').errors.maxlength">Este campo deve ter no máximo 255 caracteres</div>
+      </div>
+    </div>
+
+    <!-- CAPACITY -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('capacity')">
+      <label for="capacity" class="control-label">Capacidade</label>
+      <input type="text" formControlName="capacity" id="capacity" class="form-control">
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('capacity')"></span>
+
+      <div *ngIf="formUtils.showFieldError('capacity')" class="text-danger">
+        <div *ngIf="form.get('capacity').errors.required">Obrigatório</div>
+        <div *ngIf="form.get('capacity').errors.minlength">Este campo deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('capacity').errors.maxlength">Este campo deve ter no máximo 255 caracteres</div>
+      </div>
+    </div>
+
+    <!-- TYPE -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('type')">
+      <label for="type" class="control-label">Tipo</label>
+      <input type="text" formControlName="type" id="type" class="form-control">
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('type')"></span>
+
+      <div *ngIf="formUtils.showFieldError('type')" class="text-danger">
+        <div *ngIf="form.get('type').errors.required">Obrigatório</div>
+        <div *ngIf="form.get('type').errors.minlength">Este campo deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('type').errors.maxlength">Este campo deve ter no máximo 255 caracteres</div>
+      </div>
+    </div>
+
+    <!-- HARDWARE -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('hardware')">
+      <label for="hardware" class="control-label">Hardware</label>
+      <select class="form-control" id="hardware" formControlName="hardware">
+        <option *ngFor="let hardware of hardwares" [value]="hardware.value">{{ hardware.text }}</option>
+      </select>
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('hardware')"></span>
+
+      <div *ngIf="formUtils.showFieldError('hardware')" class="text-danger">
+        <div *ngIf="form.get('hardware').errors.required">Obrigatório</div>
+      </div>
+    </div>
+
+    <!-- SOFTWARE -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('software')">
+      <label for="software" class="control-label">Software</label>
+      <select class="form-control" id="software" formControlName="software">
+        <option *ngFor="let software of softwares" [value]="software.value">{{ software.text }}</option>
+      </select>
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('software')"></span>
+
+      <div *ngIf="formUtils.showFieldError('software')" class="text-danger">
+        <div *ngIf="form.get('software').errors.required">Obrigatório</div>
+        <div *ngIf="form.get('software').errors.minlength">Este campo deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('software').errors.maxlength">Este campo deve ter no máximo 255 caracteres</div>
+      </div>
+    </div>
+
+    <!-- EQUIPMENT -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('equipment')">
+      <label for="equipment" class="control-label">Equipmentos</label>
+      <select class="form-control" id="equipment" formControlName="equipment">
+        <option *ngFor="let equipment of equipments" [value]="equipment.value">{{ equipment.text }}</option>
+      </select>
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('equipment')"></span>
+
+      <div *ngIf="formUtils.showFieldError('equipment')" class="text-danger">
+        <div *ngIf="form.get('equipment').errors.required">Obrigatório</div>
+        <div *ngIf="form.get('equipment').errors.minlength">Este campo deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('equipment').errors.maxlength">Este campo deve ter no máximo 255 caracteres</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- laboratoryDescription -->
+      <div class="form-group col-md-12">
+        <label for="description" class="control-label">Descrição</label>
+        <textarea formControlName="description" id="description" class="form-control" rows="4"></textarea>
+      </div>
+    </div>
+
+    <button class="btn btn-default" type="button" (click)="goBack()">Cancelar</button>
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success">Confirmar</button>
+
+    <!-- <pre>{{ form.value | json }}</pre> -->
+  </div>
+</form>
