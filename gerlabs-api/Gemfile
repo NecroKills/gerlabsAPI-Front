@@ -68,7 +68,7 @@ gem 'active_model_serializers', '0.10.6'
 
 gem 'ransack', '1.8.2'
 
-gem 'omniauth', '1.6.1'
+gem 'omniauth', '1.9.2'
 
 gem 'devise_token_auth', '0.1.42'
 
